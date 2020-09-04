@@ -2160,6 +2160,18 @@ browserify-zlib@^0.2.0:
   dependencies:
     pako "~1.0.5"
 
+bs-mocha@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/bs-mocha/-/bs-mocha-1.0.0.tgz#10d94294018c3e4bc98e6ca2589ce00e33fa9b9c"
+  integrity sha512-/OjgBZdG1YyC/6SEvXihG/sgWFyenQtRJ0TOewo944XwQuDIv82jtrxYjBPbkhGHdLYnc4EfaLdPC+tW86iKEw==
+  dependencies:
+    mocha "^6.2.0"
+
+bs-platform@^8.2.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-8.2.0.tgz#f3f4c06d5710a4c782f0ed030b1fe11e74a0a6d7"
+  integrity sha512-quvmUac/ZxGDsT7L5+6RNXrLPvLHkWFownacaqlwVoyAm770bPyupTRU49ALPGk3HpjfD5eE+lpGdOSPtuwJiA==
+
 btoa-lite@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/btoa-lite/-/btoa-lite-1.0.0.tgz#337766da15801210fdd956c22e9c6891ab9d0337"
@@ -6008,7 +6020,7 @@ mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@^0.5.3, mkdirp@^0.5.5:
   dependencies:
     minimist "^1.2.5"
 
-mocha@^6.2.2:
+mocha@^6.2.0, mocha@^6.2.2:
   version "6.2.3"
   resolved "https://registry.yarnpkg.com/mocha/-/mocha-6.2.3.tgz#e648432181d8b99393410212664450a4c1e31912"
   integrity sha512-0R/3FvjIGH3eEuG17ccFPk117XL2rWxatr81a57D+r/x2uTYZRbdZ4oVidEUMh2W2TJDa7MdAb12Lm2/qrKajg==

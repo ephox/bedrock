@@ -4,17 +4,19 @@
   "author": "Tiny Technologies Inc",
   "license": "Apache-2.0",
   "scripts": {
-    "prepublishOnly": "tsc -b",
+    "prepublishOnly": "tsc -b && bsb -make-world",
     "build": "yarn prepublishOnly",
-    "test": "mocha -r esm lib/test/ts/**/*Test.js",
+    "test": "yarn test-ts && yarn test-re",
+    "test-ts": "mocha -r esm src/test/ts/**/*Test.js",
+    "test-re": "mocha -r esm src/test/re/**/*Test.bs.js",
     "buildAndTest": "yarn prepublishOnly && yarn test"
   },
   "dependencies": {
     "@ephox/bedrock-common": "^9.3.2",
     "@ephox/dispute": "^1.0.3"
   },
-  "main": "./lib/main/ts/api/Main.js",
-  "module": "./lib/main/ts/api/Main.js",
+  "main": "./src/main/ts/api/Main.js",
+  "module": "./src/main/ts/api/Main.js",
   "types": "./lib/main/ts/api/Main.d.ts",
   "files": [
     "lib/**",
@@ -23,5 +25,9 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
+  },
+  "devDependencies": {
+    "bs-mocha": "^1.0.0",
+    "bs-platform": "^8.2.0"
   }
 }

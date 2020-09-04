@@ -1,0 +1,6 @@
+src/*/ts/**/*.js
+src/*/ts/**/*.js.map
+
+src/*/re/**/*.bs.js
+.merlin
+.bsb.lock

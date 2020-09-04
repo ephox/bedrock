@@ -1,0 +1,27 @@
+{
+  "name": "@ephox/bedrock-client",
+  "version": "0.1.0",
+  "namespace": "Bedrock",
+  "sources": [
+    {
+      "dir": "src/main/re"
+    },
+    {
+      "dir": "src/test/re",
+      "dev": true
+    }
+  ],
+  "package-specs": [
+    {
+      "module": "es6",
+      "in-source": true
+    }
+  ],
+  "bs-dependencies": ["bs-mocha"],
+  "suffix": ".bs.js",
+  "warnings": {
+    "number": "A-4-40-41-42-43+101-102",
+    "error": false
+  },
+  "refmt": 3
+}
