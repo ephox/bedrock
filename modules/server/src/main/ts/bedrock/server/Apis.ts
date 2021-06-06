@@ -1,4 +1,5 @@
-import { BrowserObject } from 'webdriverio';
+import { Capabilities } from '@wdio/types';
+import { Browser } from 'webdriverio';
 import { Attempt } from '../core/Attempt';
 import * as Coverage from '../core/Coverage';
 import * as Waiter from '../util/Waiter';
@@ -10,7 +11,7 @@ import * as KeyEffects from './KeyEffects';
 import * as MouseEffects from './MouseEffects';
 import * as Routes from './Routes';
 
-type Executor<D, T> = (driver: BrowserObject) => (data: D) => Promise<T>;
+type Executor<D, T> = (driver: Browser<'async'>) => (data: D) => Promise<T>;
 
 export interface Apis {
   readonly routers: Routes.Route[];
@@ -42,7 +43,7 @@ const pollRate = 200;
 const maxInvalidAttempts = 300;
 
 // TODO: Do not use files here.
-export const create = (master: DriverMaster | null, maybeDriver: Attempt<any, BrowserObject>, projectdir: string, basedir: string, stickyFirstSession: boolean, singleTimeout: number, overallTimeout: number, testfiles: string[], loglevel: 'simple' | 'advanced', resetMousePosition: boolean): Apis => {
+export const create = (master: DriverMaster | null, maybeDriver: Attempt<any, Browser<'async'>>, projectdir: string, basedir: string, stickyFirstSession: boolean, singleTimeout: number, overallTimeout: number, testfiles: string[], loglevel: 'simple' | 'advanced', resetMousePosition: boolean): Apis => {
   let pageHasLoaded = false;
 
   // On IE, the webdriver seems to load the page before it's ready to start
@@ -60,7 +61,7 @@ export const create = (master: DriverMaster | null, maybeDriver: Attempt<any, Br
     }
   };
 
-  const effect = <D>(executor: Executor<D, void>, driver: BrowserObject) => {
+  const effect = <D>(executor: Executor<D, void>, driver: Browser<'async'>) => {
     return (data: D) => {
       return waitForDriverReady(maxInvalidAttempts, () => {
         return executor(driver)(data);
@@ -68,10 +69,10 @@ export const create = (master: DriverMaster | null, maybeDriver: Attempt<any, Br
     };
   };
 
-  const setInitialMousePosition = (driver: BrowserObject) => {
+  const setInitialMousePosition = (driver: Browser<'async'>) => {
     return () => {
       // TODO re-enable resetting the mouse on other browsers when mouseMove gets fixed on Firefox/IE
-      const browserName = driver.capabilities.browserName;
+      const browserName = (driver.capabilities as Capabilities.Capabilities).browserName;
       if (browserName === 'chrome' || browserName === 'msedge') {
         return EffectUtils.getTarget(driver, {selector: '.bedrock-mouse-reset'}).then((target) => {
           return target.moveTo();
